@@ -1915,3 +1915,37 @@ section {
 .footer .credits a {
   color: #fff;
 }
+
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.pencarian {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 40px;
+  width: 90%;
+  border-radius: 11px;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  -ms-border-radius: 11px;
+  -o-border-radius: 11px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.tombol-tampilkan {
+  background-color: #767be2;
+  padding: 10px;
+  border-radius: 4px;
+  position: relative;
+  margin-top: 30px;
+  float: right;
+  border: 0px;
+  color: #ffff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
