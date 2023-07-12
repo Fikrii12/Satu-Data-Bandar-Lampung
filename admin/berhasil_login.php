@@ -16,6 +16,8 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link href="../assets/img/logo_bdl.png" rel="icon" />
+    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
     <title>Halaman admin Login</title>
 </head>
 <body>
