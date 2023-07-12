@@ -37,6 +37,8 @@ if (isset($_POST['submit'])) {
  
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 
+    <link href="../assets/img/logo_bdl.png" rel="icon" />
+    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
     <title>Login Admin</title>
 </head>
 <body>
@@ -48,7 +50,8 @@ if (isset($_POST['submit'])) {
         <form action="" method="POST" class="login-email">
             <div>
             <img src="../assets/img/logo.png" alt="Logo">
-            <p class="login-text">Login Admin</p>
+            <h1>Login Admin</h1>
+            <p class="login-text">Satu Data Kota Bandar lampung</p>
         </div>
             <div class="input-group">
                 <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
