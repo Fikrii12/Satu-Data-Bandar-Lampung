@@ -35,8 +35,10 @@ if (isset($_POST['submit'])) {
  
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
-    <link rel="stylesheet" type="text/css" href="style.css">
- 
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+
+    <link href="../assets/img/logo_bdl.png" rel="icon" />
+    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
     <title>Login Admin</title>
 </head>
 <body>
@@ -47,8 +49,9 @@ if (isset($_POST['submit'])) {
     <div class="container">
         <form action="" method="POST" class="login-email">
             <div>
-            <img src="assets/img/logo.png" alt="Logo">
-            <p class="login-text">Login Admin</p>
+            <img src="../assets/img/logo.png" alt="Logo">
+            <h1>Login Admin</h1>
+            <p class="login-text">Satu Data Kota Bandar lampung</p>
         </div>
             <div class="input-group">
                 <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
