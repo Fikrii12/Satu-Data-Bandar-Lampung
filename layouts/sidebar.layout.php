@@ -116,7 +116,7 @@ if (!isset($_SESSION['username'])) {
 
 <div class="left-side-bar">
 	<div class="brand-logo">
-		<a href="index.html">
+		<a href="index.php">
 			<img src="vendors/images/satudata.png" alt="" class="dark-logo" />
 			<img src="vendors/images/satudata.png" alt="" class="light-logo" />
 		</a>
