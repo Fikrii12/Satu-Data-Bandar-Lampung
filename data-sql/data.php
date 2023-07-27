@@ -1,11 +1,11 @@
 <?php
-require_once("../admin/config.php");
+require_once("../admin/database.php");
 
 // Buat query untuk mengambil data dari tabel bkd_pendidikan
 $sql_pendidikan = "SELECT pendidikan, pria, wanita, jumlah FROM bkd_pendidikan";
 
 // Jalankan query
-$result_pendidikan = mysqli_query($db_connection, $sql_pendidikan);
+$result_pendidikan = mysqli_query($conn, $sql_pendidikan);
 
 // Inisialisasi array untuk menyimpan data pendidikan
 $data_pendidikan = array();
@@ -26,7 +26,7 @@ if (mysqli_num_rows($result_pendidikan) > 0) {
 $sql_golongan = "SELECT golongan, pria, wanita, jumlah FROM bkd_golongan_jenis_kelamin";
 
 // Jalankan query
-$result_golongan = mysqli_query($db_connection, $sql_golongan);
+$result_golongan = mysqli_query($conn, $sql_golongan);
 
 // Inisialisasi array untuk menyimpan data golongan
 $data_golongan = array();
@@ -47,7 +47,7 @@ if (mysqli_num_rows($result_golongan) > 0) {
 $sql_dinsos = "SELECT kecamatan, jumlah_individu, jumlah_keluarga FROM dinsos";
 
 // Jalankan query
-$result_dinsos = mysqli_query($db_connection, $sql_dinsos);
+$result_dinsos = mysqli_query($conn, $sql_dinsos);
 
 // Inisialisasi array untuk menyimpan data dinsos
 $data_dinsos = array();
@@ -67,7 +67,7 @@ if (mysqli_num_rows($result_dinsos) > 0) {
 $sql_dishub = "SELECT bulan, truck_pick_up, bus, oplet FROM dishub";
 
 // Jalankan query
-$result_dishub = mysqli_query($db_connection, $sql_dishub);
+$result_dishub = mysqli_query($conn, $sql_dishub);
 
 // Inisialisasi array untuk menyimpan data dishub
 $data_dishub = array();
@@ -88,7 +88,7 @@ if (mysqli_num_rows($result_dishub) > 0) {
 $sql_dispentani = "SELECT nama_tanaman, luas_tanaman, luas_rusak, luas_penanaman FROM dispentani";
 
 // Jalankan query
-$result_dispentani = mysqli_query($db_connection, $sql_dispentani);
+$result_dispentani = mysqli_query($conn, $sql_dispentani);
 
 // Inisialisasi array untuk menyimpan data dispentani
 $data_dispentani = array();
@@ -109,7 +109,7 @@ if (mysqli_num_rows($result_dispentani) > 0) {
 $sql_dispan = "SELECT komoditas, total, kebutuhan, stok_akhir, id_tahun FROM dispan";
 
 // Jalankan query
-$result_dispan = mysqli_query($db_connection, $sql_dispan);
+$result_dispan = mysqli_query($conn, $sql_dispan);
 
 // Inisialisasi array untuk menyimpan data dispan
 $data_dispan = array();
@@ -128,19 +128,19 @@ if (mysqli_num_rows($result_dispan) > 0) {
 }
 
 /// Buat query untuk mengambil data dari tabel bkd_gol_umur
-$sql_gol_umur = "SELECT golmur, umur1, umur2, umur3, umur4, umur5, umur6, umur7, umur8, umur9, umur10, jumlah FROM bkd_gol_umur";
+$sql_gol_umur = "SELECT golongan, umur1, umur2, umur3, umur4, umur5, umur6, umur7, umur8, umur9, umur10, jumlah FROM bkd_gol_umur";
 
 // Jalankan query
-$result_gol_umur = mysqli_query($db_connection, $sql_gol_umur);
+$result_gol_umur = mysqli_query($conn, $sql_gol_umur);
 
-// Inisialisasi array untuk menyimpan data gol_umur
+// Inisialisasi array untuk menyimpan data gol_umur 
 $data_gol_umur = array();
 
 // Loop untuk memasukkan data dari database ke dalam array gol_umur
 if (mysqli_num_rows($result_gol_umur) > 0) {
     while ($row = mysqli_fetch_assoc($result_gol_umur)) {
         $data_gol_umur[] = array(
-            "golmur" => $row["golmur"],
+            "golongan" => $row["golongan"],
             "umur1" => (int)$row["umur1"],
             "umur2" => (int)$row["umur2"],
             "umur3" => (int)$row["umur3"],
@@ -160,7 +160,7 @@ if (mysqli_num_rows($result_gol_umur) > 0) {
 $sql_umur = "SELECT umur, pria, wanita, jumlah FROM bkd_umur";
 
 // Jalankan query
-$result_umur = mysqli_query($db_connection, $sql_umur);
+$result_umur = mysqli_query($conn, $sql_umur);
 
 // Inisialisasi array untuk menyimpan data umur
 $data_umur = array();
@@ -182,7 +182,7 @@ if (mysqli_num_rows($result_umur) > 0) {
 $sql_dishub_wajib_noumum = "SELECT jenis, jumlah FROM dishub_wajib_noumum";
 
 // Jalankan query
-$result_dishub_wajib_noumum = mysqli_query($db_connection, $sql_dishub_wajib_noumum);
+$result_dishub_wajib_noumum = mysqli_query($conn, $sql_dishub_wajib_noumum);
 
 // Inisialisasi array untuk menyimpan data dishub_wajib_noumum
 $data_dishub_wajib_noumum = array();
@@ -201,7 +201,7 @@ if (mysqli_num_rows($result_dishub_wajib_noumum) > 0) {
 $sql_dishub_wajib_umum = "SELECT jenis_mobil, jumlah_mobil FROM dishub_wajib_umum";
 
 // Jalankan query
-$result_dishub_wajib_umum = mysqli_query($db_connection, $sql_dishub_wajib_umum);
+$result_dishub_wajib_umum = mysqli_query($conn, $sql_dishub_wajib_umum);
 
 // Inisialisasi array untuk menyimpan data dishub_wajib_umum
 $data_dishub_wajib_umum = array();
@@ -220,7 +220,7 @@ if (mysqli_num_rows($result_dishub_wajib_umum) > 0) {
 $sql_dispu_flyover_underpass = "SELECT nama_flyover, ukuran_flyover, kondisi_flyover, tahun_pembuatan FROM dispu_flyover_underpass";
 
 // Jalankan query
-$result_dispu_flyover_underpass = mysqli_query($db_connection, $sql_dispu_flyover_underpass);
+$result_dispu_flyover_underpass = mysqli_query($conn, $sql_dispu_flyover_underpass);
 
 // Inisialisasi array untuk menyimpan data dispu_flyover_underpass
 $data_dispu_flyover_underpass = array();
@@ -241,7 +241,7 @@ if (mysqli_num_rows($result_dispu_flyover_underpass) > 0) {
 $sql_ducapil_umur = "SELECT kecamatan, umur1, umur2, umur3, umur4, umur5, umur6, umur7, umur8 FROM ducapil_umur";
 
 // Jalankan query
-$result_ducapil_umur = mysqli_query($db_connection, $sql_ducapil_umur);
+$result_ducapil_umur = mysqli_query($conn, $sql_ducapil_umur);
 
 // Inisialisasi array untuk menyimpan data ducapil_umur
 $data_ducapil_umur = array();
@@ -268,7 +268,7 @@ if (mysqli_num_rows($result_ducapil_umur) > 0) {
 $sql_dukcapil_agama = "SELECT kecamatan, islam, kristen, katolik, hindu, budha, konghucu, kepercayaan, jumlah FROM dukcapil_agama";
 
 // Jalankan query
-$result_dukcapil_agama = mysqli_query($db_connection, $sql_dukcapil_agama);
+$result_dukcapil_agama = mysqli_query($conn, $sql_dukcapil_agama);
 
 // Inisialisasi array untuk menyimpan data dukcapil_agama
 $data_dukcapil_agama = array();
@@ -294,7 +294,7 @@ if (mysqli_num_rows($result_dukcapil_agama) > 0) {
 $sql_dukcapil_jenis_kelamin = "SELECT kecamatan, pria, wanita, jumlah FROM dukcapil_jenis_kelamin";
 
 // Jalankan query
-$result_dukcapil_jenis_kelamin = mysqli_query($db_connection, $sql_dukcapil_jenis_kelamin);
+$result_dukcapil_jenis_kelamin = mysqli_query($conn, $sql_dukcapil_jenis_kelamin);
 
 // Inisialisasi array untuk menyimpan data dukcapil_jenis_kelamin
 $data_dukcapil_jenis_kelamin = array();
@@ -315,7 +315,7 @@ if (mysqli_num_rows($result_dukcapil_jenis_kelamin) > 0) {
 $sql_dukcapil_pendidikan = "SELECT kecamatan, tidak_sekolah, belum_sd, tamat_sd, sltp, slta, d1_2, d3, d4_s1, s2, s3, jumlah FROM dukcapil_pendidikan";
 
 // Jalankan query
-$result_dukcapil_pendidikan = mysqli_query($db_connection, $sql_dukcapil_pendidikan);
+$result_dukcapil_pendidikan = mysqli_query($conn, $sql_dukcapil_pendidikan);
 
 // Inisialisasi array untuk menyimpan data dukcapil_pendidikan
 $data_dukcapil_pendidikan = array();
@@ -344,7 +344,7 @@ if (mysqli_num_rows($result_dukcapil_pendidikan) > 0) {
 $sql_industri_jumlah = "SELECT industri, jumlah, ikahh, ilmea FROM industri_jumlah";
 
 // Jalankan query
-$result_industri_jumlah = mysqli_query($db_connection, $sql_industri_jumlah);
+$result_industri_jumlah = mysqli_query($conn, $sql_industri_jumlah);
 
 // Inisialisasi array untuk menyimpan data industri_jumlah
 $data_industri_jumlah = array();
@@ -365,7 +365,7 @@ if (mysqli_num_rows($result_industri_jumlah) > 0) {
 $sql_posyandu = "SELECT kecamatan, puskesmas, pratama, madya, purnama, mandiri, jumlah, aktif, puskeskel FROM posyandu";
 
 // Jalankan query
-$result_posyandu = mysqli_query($db_connection, $sql_posyandu);
+$result_posyandu = mysqli_query($conn, $sql_posyandu);
 
 // Inisialisasi array untuk menyimpan data posyandu
 $data_posyandu = array();
@@ -395,7 +395,7 @@ $sql_puskesmas = "SELECT sarana,
                  GROUP BY sarana";
 
 // Jalankan query
-$result_puskesmas = mysqli_query($db_connection, $sql_puskesmas);
+$result_puskesmas = mysqli_query($conn, $sql_puskesmas);
 
 // Inisialisasi array untuk menyimpan data puskesmas
 $data_puskesmas = array();
@@ -413,10 +413,10 @@ if (mysqli_num_rows($result_puskesmas) > 0) {
 
 
 // Buat query untuk mengambil data dari tabel rumah_sakit
-$sql_rumah_sakit = "SELECT nama_rs, rs_umum, rs_khusus FROM rumah_sakit";
+$sql_rumah_sakit = "SELECT nama_rs, rs_umum, rs_kusus FROM rumah_sakit";
 
 // Jalankan query
-$result_rumah_sakit = mysqli_query($db_connection, $sql_rumah_sakit);
+$result_rumah_sakit = mysqli_query($conn, $sql_rumah_sakit);
 
 // Inisialisasi array untuk menyimpan data rumah_sakit
 $data_rumah_sakit = array();
@@ -425,7 +425,7 @@ $data_rumah_sakit = array();
 if (mysqli_num_rows($result_rumah_sakit) > 0) {
     while ($row = mysqli_fetch_assoc($result_rumah_sakit)) {
         $rs_umum_status = ($row["rs_umum"] === "Rawat Inap") ? "UMUM - Rawat Inap" : "UMUM - Non Rawat Inap";
-        $rs_kusus_status = ($row["rs_khusus"] === "Rawat Inap") ? "KHUSUS - Rawat Inap" : "KHUSUS - Non Rawat Inap";
+        $rs_kusus_status = ($row["rs_kusus"] === "Rawat Inap") ? "KHUSUS - Rawat Inap" : "KHUSUS - Non Rawat Inap";
 
         $data_rumah_sakit[] = array(
             "nama_rs" => $row["nama_rs"],
@@ -438,15 +438,15 @@ if (mysqli_num_rows($result_rumah_sakit) > 0) {
 // Buat query untuk mengambil data dari tabel rumah_sakit
 $sql_rumah_sakit = "SELECT nama_rs, 
                            rs_umum,
-                           rs_khusus
+                           rs_kusus
                     FROM rumah_sakit";
 
 // Jalankan query
-$result_rumah_sakit = mysqli_query($db_connection, $sql_rumah_sakit);
+$result_rumah_sakit = mysqli_query($conn, $sql_rumah_sakit);
 
 // Inisialisasi array untuk menyimpan data rumah_sakit
 $data_umum = array();
-$data_khusus = array();
+$data_kusus = array();
 
 // Loop untuk memasukkan data dari database ke dalam array rumah_sakit
 if (mysqli_num_rows($result_rumah_sakit) > 0) {
@@ -466,14 +466,14 @@ if (mysqli_num_rows($result_rumah_sakit) > 0) {
             );
         }
 
-        if ($row["rs_khusus"] === "Rawat Inap") {
-            $data_khusus[] = array(
+        if ($row["rs_kusus"] === "Rawat Inap") {
+            $data_kusus[] = array(
                 "nama_rs" => $nama_rs,
                 "jumlah_rawat_inap" => 1,
                 "jumlah_non_rawat_inap" => 0,
             );
         } else {
-            $data_khusus[] = array(
+            $data_kusus[] = array(
                 "nama_rs" => $nama_rs,
                 "jumlah_rawat_inap" => 0,
                 "jumlah_non_rawat_inap" => 1,
@@ -483,10 +483,10 @@ if (mysqli_num_rows($result_rumah_sakit) > 0) {
 }
 
 // Gabungkan data umum dan khusus, dengan umum diutamakan dalam urutan
-$data_rumah_sakit = array_merge($data_umum, $data_khusus);
+$data_rumah_sakit = array_merge($data_umum, $data_kusus);
 
 // Tutup koneksi
-mysqli_close($db_connection);
+mysqli_close($conn);
 
 // Convert data arrays to JSON format
 $json_data_pendidikan = json_encode($data_pendidikan);
