@@ -1,494 +1,1078 @@
-// chart 1
-Highcharts.chart('chart1', {
-	title: {
-		text: 'Solar Employment Growth by Sector, 2010-2016'
-	},
-	subtitle: {
-		text: 'Source: thesolarfoundation.com'
-	},
-	yAxis: {
-		title: {
-			text: 'Number of Employees'
-		}
-	},
-	chart: {
-		type: 'spline',
-	},
-	plotOptions: {
-		series: {
-			label: {
-				connectorAllowed: false
-			},
-			pointStart: 2010
-		},
-		spline: {
-			marker: {
-				enabled: false
-			}
-		}
-	},
-	series: [{
-		name: 'Installation',
-		data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-	}, {
-		name: 'Manufacturing',
-		data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-	}, {
-		name: 'Sales & Distribution',
-		data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-	}, {
-		name: 'Project Development',
-		data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
-	}, {
-		name: 'Other',
-		data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-	}],
-	responsive: {
-		rules: [{
-			condition: {
-				maxWidth: 500
-			}
-		}]
-	}
+$.ajax({
+  url: "data-sql/data.php",
+  type: "GET",
+  dataType: "json",
+  success: function (data) {
+    // document.getElementById("counter-grafik").style.display='block'
+    // Set data yang didapatkan dari AJAX ke dalam variabel chartDataPendidikan
+    var chartDataPendidikan = data.pendidikan;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel chartDataGolongan
+    var chartDataGolongan = data.golongan;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel chartDataDinsos
+    var chartDataDinsos = data.dinsos;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel chartDataDishub
+    var chartDataDishub = data.dishub;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel chartDataDispentani
+    var chartDataDispentani = data.dispentani;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel chartDataDispan
+    var chartDataDispan = data.dispan;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel chartDataGolUmur
+    var chartDataGolUmur = data.gol_umur;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel chartDataUmur
+    var chartDataUmur = data.umur;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel chartDataDishubWajibNoUmum
+    var chartDataDishubWajibNoUmum = data.dishub_wajib_noumum;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel chartDataDishubWajibUmum
+    var chartDataDishubWajibUmum = data.dishub_wajib_umum;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel Dispu Flyover Underpass
+    var chartDataDispuFlyoverUnderpass = data.dispu_flyover_underpass;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel Dukcapil Umur
+    var chartDataDucapilUmur = data.ducapil_umur;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel Dukcapil Agama
+    var chartDataDukcapilAgama = data.dukcapil_agama;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel Dukcapil Jenis Kelamin
+    var chartDataDukcapilJenisKelamin = data.dukcapil_jenis_kelamin;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel Dukcapil Pendidikan
+    var chartDataDukcapilPendidikan = data.dukcapil_pendidikan;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel Industri Jumlah
+    var chartDataIndustriJumlah = data.industri_jumlah;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel Posyandu
+    var chartDataPosyandu = data.posyandu;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel Puskesmas
+    var chartDataPuskesmas = data.puskesmas;
+
+    // Set data yang didapatkan dari AJAX ke dalam variabel Rumah Sakit
+    var chartDataRumahSakit = data.rumah_sakit;
+    // Membuat chart pertama menggunakan Highcharts untuk data pendidikan
+    Highcharts.chart("pendidikan", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual BKD - Pendidikan",
+      },
+      subtitle: {
+        text: "Source: BKD Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataPendidikan.map((item) => item.pendidikan),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Pria",
+          data: chartDataPendidikan.map((item) => item.pria),
+        },
+        {
+          name: "Wanita",
+          data: chartDataPendidikan.map((item) => item.wanita),
+        },
+        {
+          name: "Jumlah",
+          data: chartDataPendidikan.map((item) => item.jumlah),
+        },
+      ],
+    });
+    // Membuat chart kedua menggunakan Highcharts untuk data Jenis Kelamin
+    Highcharts.chart("golongan-jenis-kelamin", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual BKD - Golongan Jenis Kelamin",
+      },
+      subtitle: {
+        text: "Source: BKD Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataGolongan.map((item) => item.golongan),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Pria",
+          data: chartDataGolongan.map((item) => item.pria),
+        },
+        {
+          name: "Wanita",
+          data: chartDataGolongan.map((item) => item.wanita),
+        },
+        {
+          name: "Jumlah",
+          data: chartDataGolongan.map((item) => item.jumlah),
+        },
+      ],
+    });
+    // Membua chart pertama menggunakan Highcharts untuk Golongan Umur
+    Highcharts.chart("golongan-umur", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual BKD - Golongan Umur",
+      },
+      subtitle: {
+        text: "Source: BKD Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataGolUmur.map((item) => item.golongan),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Umur 1",
+          data: chartDataGolUmur.map((item) => item.umur1),
+        },
+        {
+          name: "Umur 2",
+          data: chartDataGolUmur.map((item) => item.umur2),
+        },
+        {
+          name: "Umur 3",
+          data: chartDataGolUmur.map((item) => item.umur3),
+        },
+        {
+          name: "Umur 4",
+          data: chartDataGolUmur.map((item) => item.umur4),
+        },
+        {
+          name: "Umur 5",
+          data: chartDataGolUmur.map((item) => item.umur5),
+        },
+        {
+          name: "Umur 6",
+          data: chartDataGolUmur.map((item) => item.umur6),
+        },
+        {
+          name: "Umur 7",
+          data: chartDataGolUmur.map((item) => item.umur7),
+        },
+        {
+          name: "Umur 8",
+          data: chartDataGolUmur.map((item) => item.umur8),
+        },
+        {
+          name: "Umur 9",
+          data: chartDataGolUmur.map((item) => item.umur9),
+        },
+        {
+          name: "Umur 10",
+          data: chartDataGolUmur.map((item) => item.umur10),
+        },
+      ],
+    });
+    // Membua chart pertama menggunakan Highcharts untuk Umur
+    Highcharts.chart("umur", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual BKD - Umur",
+      },
+      subtitle: {
+        text: "Source: BKD Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataUmur.map((item) => item.umur),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Pria",
+          data: chartDataUmur.map((item) => item.pria),
+        },
+        {
+          name: "Wanita",
+          data: chartDataUmur.map((item) => item.wanita),
+        },
+        {
+          name: "Jumlah",
+          data: chartDataUmur.map((item) => item.jumlah),
+        },
+      ],
+    });
+    // Membuat chart kelima menggunakan Highcharts untuk data Dinsos-Kecamatan
+    Highcharts.chart("kecamatan", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Dinsos - Kecamatan",
+      },
+      subtitle: {
+        text: "Source: Dinsos Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataDinsos.map((item) => item.kecamatan),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Jumlah Individu",
+          data: chartDataDinsos.map((item) => item.jumlah_individu),
+        },
+        {
+          name: "Jumlah Keluarga",
+          data: chartDataDinsos.map((item) => item.jumlah_keluarga),
+        },
+      ],
+    });
+    // Membuat chart menggunakan Highcharts untuk data Dishub-Bulan
+    Highcharts.chart("bulan", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Dishub - Bulan",
+      },
+      subtitle: {
+        text: "Source: Dishub Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataDishub.map((item) => item.bulan),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Truck Pick Up",
+          data: chartDataDishub.map((item) => item.truck_pick_up),
+        },
+        {
+          name: "Bus",
+          data: chartDataDishub.map((item) => item.bus),
+        },
+        {
+          name: "Oplet",
+          data: chartDataDishub.map((item) => item.oplet),
+        },
+      ],
+    });
+    // Membuat chart menggunakan Highcharts untuk data Jenis Kendaraan (Wajib No Umum)
+    Highcharts.chart("jenis-kendaraan", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Dishub - Jenis Kendaraan (Wajib No Umum)",
+      },
+      subtitle: {
+        text: "Source: Dishub Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataDishubWajibNoUmum.map((item) => item.jenis),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Jumlah",
+          data: chartDataDishubWajibNoUmum.map((item) => item.jumlah),
+        },
+      ],
+    });
+    // Membuat chart menggunakan Highcharts untuk data Jenis Mobil
+    Highcharts.chart("jenis-mobil", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Dishub Wajib Umum - Jenis Mobil",
+      },
+      subtitle: {
+        text: "Source: Dishub Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataDishubWajibUmum.map((item) => item.jenis_mobil),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Jumlah Mobil",
+          data: chartDataDishubWajibUmum.map((item) => item.jumlah_mobil),
+        },
+      ],
+    });
+    // Membuat chart menggunakan Highcharts untuk data dispentani Nama Tanaman
+    Highcharts.chart("nama-tanaman", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Dispetani - Nama Tanaman",
+      },
+      subtitle: {
+        text: "Source: Dispetani Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataDispentani.map((item) => item.nama_tanaman),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Luas Tanaman",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Luas Tanaman",
+          data: chartDataDispentani.map((item) => item.luas_tanaman),
+        },
+        {
+          name: "Luas Rusak",
+          data: chartDataDispentani.map((item) => item.luas_rusak),
+        },
+        {
+          name: "Luas Penanaman",
+          data: chartDataDispentani.map((item) => item.luas_penanaman),
+        },
+      ],
+    });
+    // Membuat chart menggunakan Highcharts untuk data dispan Komoditas
+    Highcharts.chart("komoditas", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Dispan - Komoditas",
+      },
+      subtitle: {
+        text: "Source: Dispan Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataDispan.map((item) => item.komoditas),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Total",
+          data: chartDataDispan.map((item) => item.total),
+        },
+        {
+          name: "Kebutuhan",
+          data: chartDataDispan.map((item) => item.kebutuhan),
+        },
+        {
+          name: "Stok Akhir",
+          data: chartDataDispan.map((item) => item.stok_akhir),
+        },
+      ],
+    });
+    // Membuat chart menggunakan Highcharts untuk data Dispu Flyover Underpass
+    Highcharts.chart("dispu-flyover-underpass", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Dispu Flyover Underpass - Nama Flyover",
+      },
+      subtitle: {
+        text: "Source: Dispu Flyover Underpass",
+      },
+      xAxis: {
+        categories: chartDataDispuFlyoverUnderpass.map(
+          (item) => item.nama_flyover
+        ),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Ukuran Flyover",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Ukuran Flyover",
+          data: chartDataDispuFlyoverUnderpass.map(
+            (item) => item.ukuran_flyover
+          ),
+        },
+      ],
+    });
+    // Membuat chart menggunakan Highcharts untuk data Dukcapil Umur
+    Highcharts.chart("dukcapil-umur", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Dukcapil Umur - Kecamatan",
+      },
+      subtitle: {
+        text: "Source: Dukcapil Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataDucapilUmur.map((item) => item.kecamatan),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Umur 1",
+          data: chartDataDucapilUmur.map((item) => item.umur1),
+        },
+        {
+          name: "Umur 2",
+          data: chartDataDucapilUmur.map((item) => item.umur2),
+        },
+        {
+          name: "Umur 3",
+          data: chartDataDucapilUmur.map((item) => item.umur3),
+        },
+        {
+          name: "Umur 4",
+          data: chartDataDucapilUmur.map((item) => item.umur4),
+        },
+        {
+          name: "Umur 5",
+          data: chartDataDucapilUmur.map((item) => item.umur5),
+        },
+        {
+          name: "Umur 6",
+          data: chartDataDucapilUmur.map((item) => item.umur6),
+        },
+        {
+          name: "Umur 7",
+          data: chartDataDucapilUmur.map((item) => item.umur7),
+        },
+        {
+          name: "Umur 8",
+          data: chartDataDucapilUmur.map((item) => item.umur8),
+        },
+      ],
+    });
+    // Membuat chart menggunakan Highcharts untuk Dukcapil Agama
+    Highcharts.chart("dukcapil-agama", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Dukcapil Agama - Kecamatan",
+      },
+      subtitle: {
+        text: "Source: Dukcapil Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataDukcapilAgama.map((item) => item.kecamatan),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Islam",
+          data: chartDataDukcapilAgama.map((item) => item.islam),
+        },
+        {
+          name: "Kristen",
+          data: chartDataDukcapilAgama.map((item) => item.kristen),
+        },
+        {
+          name: "Katolik",
+          data: chartDataDukcapilAgama.map((item) => item.katolik),
+        },
+        {
+          name: "Hindu",
+          data: chartDataDukcapilAgama.map((item) => item.hindu),
+        },
+        {
+          name: "Budha",
+          data: chartDataDukcapilAgama.map((item) => item.budha),
+        },
+        {
+          name: "Khonghucu",
+          data: chartDataDukcapilAgama.map((item) => item.khonghucu),
+        },
+        {
+          name: "Kepercayaan",
+          data: chartDataDukcapilAgama.map((item) => item.kepercayaan),
+        },
+      ],
+    });
+    // Membuat chart menggunakan Highcharts untuk Dukcapil Jenis Kelamin
+    Highcharts.chart("dukcapil-jenis-kelamin", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Dukcapil Jenis Kelamin - Kecamatan",
+      },
+      subtitle: {
+        text: "Source: Dukcapil Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataDukcapilJenisKelamin.map((item) => item.kecamatan),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Pria",
+          data: chartDataDukcapilJenisKelamin.map((item) => item.pria),
+        },
+        {
+          name: "Wanita",
+          data: chartDataDukcapilJenisKelamin.map((item) => item.wanita),
+        },
+      ],
+    });
+    // Membuat chart menggunakan Highcharts untuk Dukcapil Pendidikan
+    Highcharts.chart("dukcapil-pendidikan", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Dukcapil - Pendidikan",
+      },
+      subtitle: {
+        text: "Source: Dukcapil Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataDukcapilPendidikan.map((item) => item.kecamatan),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Tidak Sekolah",
+          data: chartDataDukcapilPendidikan.map((item) => item.tidak_sekolah),
+        },
+        {
+          name: "Belum SD",
+          data: chartDataDukcapilPendidikan.map((item) => item.belum_sd),
+        },
+        {
+          name: "Tamat SD",
+          data: chartDataDukcapilPendidikan.map((item) => item.tamat_sd),
+        },
+        {
+          name: "SLTP",
+          data: chartDataDukcapilPendidikan.map((item) => item.sltp),
+        },
+        {
+          name: "SLTA",
+          data: chartDataDukcapilPendidikan.map((item) => item.slta),
+        },
+        {
+          name: "D1-D2",
+          data: chartDataDukcapilPendidikan.map((item) => item.d1_2),
+        },
+        {
+          name: "D3",
+          data: chartDataDukcapilPendidikan.map((item) => item.d3),
+        },
+        {
+          name: "D4-S1",
+          data: chartDataDukcapilPendidikan.map((item) => item.d4_s1),
+        },
+        {
+          name: "S2",
+          data: chartDataDukcapilPendidikan.map((item) => item.s2),
+        },
+        {
+          name: "S3",
+          data: chartDataDukcapilPendidikan.map((item) => item.s3),
+        },
+      ],
+    });
+    // Membuat chart menggunakan Highcharts untuk Industri Jumlah
+    Highcharts.chart("industri-jumlah", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Industri - Jumlah",
+      },
+      subtitle: {
+        text: "Source: Industri Kota Bandar Lampung",
+      },
+      xAxis: {
+        categories: chartDataIndustriJumlah.map((item) => item.industri),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Jumlah",
+          data: chartDataIndustriJumlah.map((item) => item.jumlah),
+        },
+        {
+          name: "IKAAHH",
+          data: chartDataIndustriJumlah.map((item) => item.ikahh),
+        },
+        {
+          name: "ILMEA",
+          data: chartDataIndustriJumlah.map((item) => item.ilmea),
+        },
+      ],
+    });
+    //  Membuat chart menggunakan Highcharts untuk Posyandu
+    Highcharts.chart("posyandu", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Data Visual Posyandu",
+      },
+      subtitle: {
+        text: "Source: Posyandu Data",
+      },
+      xAxis: {
+        categories: chartDataPosyandu.map((item) => item.kecamatan),
+        crosshair: true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Jumlah",
+        },
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true,
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+      series: [
+        {
+          name: "Pratama",
+          data: chartDataPosyandu.map((item) => item.pratama),
+        },
+        {
+          name: "Madya",
+          data: chartDataPosyandu.map((item) => item.madya),
+        },
+        {
+          name: "Purnama",
+          data: chartDataPosyandu.map((item) => item.purnama),
+        },
+        {
+          name: "Mandiri",
+          data: chartDataPosyandu.map((item) => item.mandiri),
+        },
+        {
+          name: "Jumlah",
+          data: chartDataPosyandu.map((item) => item.jumlah),
+        },
+        {
+          name: "Aktif",
+          data: chartDataPosyandu.map((item) => item.aktif),
+        },
+        {
+          name: "Puskeskel",
+          data: chartDataPosyandu.map((item) => item.puskeskel),
+        },
+      ],
+    });
+    //  Membuat chart menggunakan Highcharts untuk Puskesmas
+    Highcharts.chart("puskesmas", {
+      chart: {
+        type: "bar",
+      },
+      title: {
+        text: "Data Puskesmas - Jumlah Rawat Inap dan Non Rawat Inap",
+      },
+      xAxis: {
+        categories: chartDataPuskesmas.map((item) => item.sarana),
+      },
+      yAxis: {
+        title: {
+          text: "Jumlah",
+        },
+      },
+      series: [
+        {
+          name: "Rawat Inap",
+          data: chartDataPuskesmas.map((item) => item.jumlah_rawat_inap),
+        },
+        {
+          name: "Non Rawat Inap",
+          data: chartDataPuskesmas.map((item) => item.jumlah_non_rawat_inap),
+        },
+      ],
+    });
+    //  Membuat chart menggunakan Highcharts untuk Rumah Sakit
+    Highcharts.chart("rumah-sakit", {
+      chart: {
+        type: "bar",
+      },
+      title: {
+        text: "Data Rumah Sakit - RS Umum dan RS Khusus",
+      },
+      xAxis: {
+        categories: chartDataRumahSakit.map((item) => item.nama_rs),
+      },
+      yAxis: {
+        title: {
+          text: "Jumlah",
+        },
+      },
+      series: [
+        {
+          name: "RS Umum",
+          data: chartDataRumahSakit.map((item) => item.jumlah_rawat_inap),
+          color: "#66b2b2", // Warna untuk RS Umum
+        },
+        {
+          name: "RS Khusus",
+          data: chartDataRumahSakit.map((item) => item.jumlah_non_rawat_inap),
+          color: "#ff9999", // Warna untuk RS Khusus
+        },
+      ],
+    });
+  },
+  error: function (xhr, status, error) {
+    // Handle error if there is a problem fetching data
+    console.error("Error: ", status, error);
+  },
 });
 
-// chart 2
-$.getJSON(
-	'https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json',
-	function (data) {
-
-		Highcharts.chart('chart2', {
-			chart: {
-				zoomType: 'x'
-			},
-			title: {
-				text: 'USD to EUR exchange rate over time'
-			},
-			subtitle: {
-				text: document.ontouchstart === undefined ?
-				'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-			},
-			xAxis: {
-				type: 'datetime'
-			},
-			yAxis: {
-				title: {
-					text: 'Exchange rate'
-				}
-			},
-			legend: {
-				enabled: false
-			},
-			plotOptions: {
-				area: {
-					fillColor: {
-						linearGradient: {
-							x1: 0,
-							y1: 0,
-							x2: 0,
-							y2: 1
-						},
-						stops: [
-						[0, Highcharts.getOptions().colors[0]],
-						[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-						]
-					},
-					marker: {
-						radius: 2
-					},
-					lineWidth: 1,
-					states: {
-						hover: {
-							lineWidth: 1
-						}
-					},
-					threshold: null
-				}
-			},
-
-			series: [{
-				type: 'area',
-				name: 'USD to EUR',
-				data: data
-			}]
-		});
-	}
-	);
-
-// chart 3
-Highcharts.chart('chart3', {
-	chart: {
-		type: 'area'
-	},
-	title: {
-		text: 'US and USSR nuclear stockpiles'
-	},
-	subtitle: {
-		text: 'Sources: <a href="https://thebulletin.org/2006/july/global-nuclear-stockpiles-1945-2006">' +
-		'thebulletin.org</a> &amp; <a href="https://www.armscontrol.org/factsheets/Nuclearweaponswhohaswhat">' +
-		'armscontrol.org</a>'
-	},
-	xAxis: {
-		allowDecimals: false,
-		labels: {
-			formatter: function () {
-				return this.value;
-			}
-		}
-	},
-	yAxis: {
-		title: {
-			text: 'Nuclear weapon states'
-		},
-		labels: {
-			formatter: function () {
-				return this.value / 1000 + 'k';
-			}
-		}
-	},
-	tooltip: {
-		pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
-	},
-	plotOptions: {
-		area: {
-			pointStart: 1940,
-			marker: {
-				enabled: false,
-				symbol: 'circle',
-				radius: 2,
-				states: {
-					hover: {
-						enabled: true
-					}
-				}
-			}
-		}
-	},
-	series: [{
-		name: 'USA',
-		data: [
-		null, null, null, null, null, 6, 11, 32, 110, 235,
-		369, 640, 1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
-		20434, 24126, 27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342,
-		26662, 26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
-		24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
-		21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950, 10871, 10824,
-		10577, 10527, 10475, 10421, 10358, 10295, 10104, 9914, 9620, 9326,
-		5113, 5113, 4954, 4804, 4761, 4717, 4368, 4018
-		]
-	}, {
-		name: 'USSR/Russia',
-		data: [null, null, null, null, null, null, null, null, null, null,
-		5, 25, 50, 120, 150, 200, 426, 660, 869, 1060,
-		1605, 2471, 3322, 4238, 5221, 6129, 7089, 8339, 9399, 10538,
-		11643, 13092, 14478, 15915, 17385, 19055, 21205, 23044, 25393, 27935,
-		30062, 32049, 33952, 35804, 37431, 39197, 45000, 43000, 41000, 39000,
-		37000, 35000, 33000, 31000, 29000, 27000, 25000, 24000, 23000, 22000,
-		21000, 20000, 19000, 18000, 18000, 17000, 16000, 15537, 14162, 12787,
-		12600, 11400, 5500, 4512, 4502, 4502, 4500, 4500
-		]
-	}]
-});
-
-// chart 4
-Highcharts.chart('chart4', {
-	chart: {
-		type: 'column'
-	},
-	title: {
-		text: 'Monthly Average Rainfall'
-	},
-	subtitle: {
-		text: 'Source: WorldClimate.com'
-	},
-	xAxis: {
-		categories: [
-		'Jan',
-		'Feb',
-		'Mar',
-		'Apr',
-		'May',
-		'Jun',
-		'Jul',
-		'Aug',
-		'Sep',
-		'Oct',
-		'Nov',
-		'Dec'
-		],
-		crosshair: true
-	},
-	yAxis: {
-		min: 0,
-		title: {
-			text: 'Rainfall (mm)'
-		}
-	},
-	tooltip: {
-		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-		pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-		'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-		footerFormat: '</table>',
-		shared: true,
-		useHTML: true
-	},
-	plotOptions: {
-		column: {
-			pointPadding: 0.2,
-			borderWidth: 0
-		}
-	},
-	series: [{
-		name: 'Tokyo',
-		data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-
-	}, {
-		name: 'New York',
-		data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-
-	}, {
-		name: 'London',
-		data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-
-	}, {
-		name: 'Berlin',
-		data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-
-	}]
-});
-
-// chart 5
-Highcharts.chart('chart5', {
-	title: {
-		text: 'Pie point CSS'
-	},
-	xAxis: {
-		categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-	},
-	series: [{
-		type: 'pie',
-		allowPointSelect: true,
-		keys: ['name', 'y', 'selected', 'sliced'],
-		data: [
-		['Apples', 29.9, false],
-		['Pears', 71.5, false],
-		['Oranges', 106.4, false],
-		['Plums', 129.2, false],
-		['Bananas', 144.0, false],
-		['Peaches', 176.0, false],
-		['Prunes', 135.6, true, true],
-		['Avocados', 148.5, false]
-		],
-		showInLegend: true
-	}]
-});
-
-// chart 6
-Highcharts.chart('chart6', {
-	chart: {
-		type: 'pie',
-		options3d: {
-			enabled: true,
-			alpha: 45
-		}
-	},
-	title: {
-		text: 'Contents of Highsoft\'s weekly fruit delivery'
-	},
-	subtitle: {
-		text: '3D donut in Highcharts'
-	},
-	plotOptions: {
-		pie: {
-			innerSize: 100,
-			depth: 45
-		}
-	},
-	series: [{
-		name: 'Delivered amount',
-		data: [
-		['Bananas', 8],
-		['Kiwi', 3],
-		['Mixed nuts', 1],
-		['Oranges', 6],
-		['Apples', 8],
-		['Pears', 4],
-		['Clementines', 4],
-		['Reddish (bag)', 1],
-		['Grapes (bunch)', 1]
-		]
-	}]
-});
-
-// chart 7
-Highcharts.chart('chart7', {
-	chart: {
-		type: 'gauge',
-		plotBackgroundColor: null,
-		plotBackgroundImage: null,
-		plotBorderWidth: 0,
-		plotShadow: false
-	},
-	title: {
-		text: 'Speedometer'
-	},
-	pane: {
-		startAngle: -150,
-		endAngle: 150,
-		background: [{
-			backgroundColor: {
-				linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-				stops: [
-				[0, '#FFF'],
-				[1, '#333']
-				]
-			},
-			borderWidth: 0,
-			outerRadius: '109%'
-		}, {
-			backgroundColor: {
-				linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-				stops: [
-				[0, '#333'],
-				[1, '#FFF']
-				]
-			},
-			borderWidth: 1,
-			outerRadius: '107%'
-		}, {
-		}, {
-			backgroundColor: '#DDD',
-			borderWidth: 0,
-			outerRadius: '105%',
-			innerRadius: '103%'
-		}]
-	},
-	yAxis: {
-		min: 0,
-		max: 200,
-
-		minorTickInterval: 'auto',
-		minorTickWidth: 1,
-		minorTickLength: 10,
-		minorTickPosition: 'inside',
-		minorTickColor: '#666',
-
-		tickPixelInterval: 30,
-		tickWidth: 2,
-		tickPosition: 'inside',
-		tickLength: 10,
-		tickColor: '#666',
-		labels: {
-			step: 2,
-			rotation: 'auto'
-		},
-		title: {
-			text: 'km/h'
-		},
-		plotBands: [{
-			from: 0,
-			to: 120,
-			color: '#55BF3B'
-		}, {
-			from: 120,
-			to: 160,
-			color: '#DDDF0D'
-		}, {
-			from: 160,
-			to: 200,
-			color: '#DF5353'
-		}]
-	},
-	series: [{
-		name: 'Speed',
-		data: [80],
-		tooltip: {
-			valueSuffix: ' km/h'
-		}
-	}]
-},
-function (chart) {
-	if (!chart.renderer.forExport) {
-		setInterval(function () {
-			var point = chart.series[0].points[0],
-			newVal,
-			inc = Math.round((Math.random() - 0.5) * 20);
-
-			newVal = point.y + inc;
-			if (newVal < 0 || newVal > 200) {
-				newVal = point.y - inc;
-			}
-
-			point.update(newVal);
-
-		}, 3000);
-	}
-});
-
-// chart 8
-Highcharts.chart('chart8', {
-	chart: {
-		type: 'boxplot'
-	},
-	title: {
-		text: 'Highcharts Box Plot Example'
-	},
-	legend: {
-		enabled: false
-	},
-	xAxis: {
-		categories: ['1', '2', '3', '4', '5'],
-		title: {
-			text: 'Experiment No.'
-		}
-	},
-	yAxis: {
-		title: {
-			text: 'Observations'
-		},
-		plotLines: [{
-			value: 932,
-			color: 'red',
-			width: 1,
-			label: {
-				text: 'Theoretical mean: 932',
-				align: 'center',
-				style: {
-					color: 'gray'
-				}
-			}
-		}]
-	},
-	series: [{
-		name: 'Observations',
-		data: [
-		[760, 801, 848, 895, 965],
-		[733, 853, 939, 980, 1080],
-		[714, 762, 817, 870, 918],
-		[724, 802, 806, 871, 950],
-		[834, 836, 864, 882, 910]
-		],
-		tooltip: {
-			headerFormat: '<em>Experiment No {point.key}</em><br/>'
-		}
-	}, {
-		name: 'Outlier',
-		color: Highcharts.getOptions().colors[0],
-		type: 'scatter',
-		data: [
-		[0, 644],
-		[4, 718],
-		[4, 951],
-		[4, 969]
-		],
-		marker: {
-			fillColor: 'white',
-			lineWidth: 1,
-			lineColor: Highcharts.getOptions().colors[0]
-		},
-		tooltip: {
-			pointFormat: 'Observation: {point.y}'
-		}
-	}]
-
-});
+//   },
+//   error: function (xhr, status, error) {
+//     // Tangani error jika terjadi masalah dalam mengambil data
+//     console.error("Error: ", status, error);
+//   },
+// });
