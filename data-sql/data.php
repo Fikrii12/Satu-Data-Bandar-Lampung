@@ -1,6 +1,13 @@
 <?php
 require_once("../admin/database.php");
 
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Memeriksa koneksi
+if ($conn->connect_error) {
+    die("Koneksi ke database gagal: " . $conn->connect_error);
+}
+
 // Buat query untuk mengambil data dari tabel bkd_pendidikan
 $sql_pendidikan = "SELECT pendidikan, pria, wanita, jumlah FROM bkd_pendidikan";
 
@@ -128,7 +135,7 @@ if (mysqli_num_rows($result_dispan) > 0) {
 }
 
 /// Buat query untuk mengambil data dari tabel bkd_gol_umur
-$sql_gol_umur = "SELECT golongan, umur1, umur2, umur3, umur4, umur5, umur6, umur7, umur8, umur9, umur10, jumlah FROM bkd_gol_umur";
+$sql_gol_umur = "SELECT golongan, umur1, umur2, umur3, umur4, umur5, umur6, umur7, umur8, umur9, umur10, jumlah FROM bkd_golongan_umur";
 
 // Jalankan query
 $result_gol_umur = mysqli_query($conn, $sql_gol_umur);
@@ -198,7 +205,7 @@ if (mysqli_num_rows($result_dishub_wajib_noumum) > 0) {
 }
 
 /// Buat query untuk mengambil data dari tabel dishub_wajib_umum
-$sql_dishub_wajib_umum = "SELECT jenis_mobil, jumlah_mobil FROM dishub_wajib_umum";
+$sql_dishub_wajib_umum = "SELECT jenis, jumlah FROM dishub_wajib_umum";
 
 // Jalankan query
 $result_dishub_wajib_umum = mysqli_query($conn, $sql_dishub_wajib_umum);
@@ -210,8 +217,8 @@ $data_dishub_wajib_umum = array();
 if (mysqli_num_rows($result_dishub_wajib_umum) > 0) {
     while ($row = mysqli_fetch_assoc($result_dishub_wajib_umum)) {
         $data_dishub_wajib_umum[] = array(
-            "jenis_mobil" => $row["jenis_mobil"],
-            "jumlah_mobil" => (int)$row["jumlah_mobil"],
+            "jenis" => $row["jenis"],
+            "jumlah" => (int)$row["jumlah"],
         );
     }
 }

@@ -9,9 +9,10 @@ $dbname = "databandarlampung";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Memeriksa koneksi
-if ($conn->connect_error) {
-    die("Koneksi ke database gagal: " . $conn->connect_error);
+if (!$conn) {
+    die("Koneksi ke database gagal: " . mysqli_connect_error());
 }
+
 
 
 
