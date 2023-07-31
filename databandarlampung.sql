@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Jul 2023 pada 10.07
--- Versi server: 10.4.27-MariaDB
--- Versi PHP: 7.4.33
+-- Waktu pembuatan: 31 Jul 2023 pada 06.31
+-- Versi server: 10.4.28-MariaDB
+-- Versi PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -138,18 +138,7 @@ INSERT INTO `bkd_pendidikan` (`id_pendidikan`, `pendidikan`, `pria`, `wanita`, `
 ('64c20716a238b', 'S.1', 1324, 4340, 5664, 'BKD', 2023),
 ('64c20716a381d', 'S.2', 434, 698, 1132, 'BKD', 2023),
 ('64c20716a4562', 'S.3', 1, 1, 2, 'BKD', 2023),
-('64c20716a5876', 'SPESIALIS', 8, 6, 14, 'BKD', 2023),
-('64c21bcf5c388', 'SD', 56, 4, 60, 'BKD', 2022),
-('64c21bcfed7a4', 'SLTA', 554, 458, 1012, 'BKD', 2022),
-('64c21bcff3a4d', 'SLTP', 57, 3, 60, 'BKD', 2022),
-('64c21bd000ef9', 'D.I', 4, 11, 15, 'BKD', 2022),
-('64c21bd004537', 'D.II', 19, 31, 50, 'BKD', 2022),
-('64c21bd0059a3', 'D.III', 93, 511, 604, 'BKD', 2022),
-('64c21bd006bf2', 'D.IV', 24, 171, 195, 'BKD', 2022),
-('64c21bd007c54', 'S.1', 1324, 4340, 5664, 'BKD', 2022),
-('64c21bd00966e', 'S.2', 434, 698, 1132, 'BKD', 2022),
-('64c21bd00a570', 'S.3', 1, 1, 2, 'BKD', 2022),
-('64c21bd00b704', 'SPESIALIS', 8, 6, 14, 'BKD', 2022);
+('64c20716a5876', 'SPESIALIS', 8, 6, 14, 'BKD', 2023);
 
 -- --------------------------------------------------------
 
@@ -296,18 +285,18 @@ CREATE TABLE `dishub_wajib_biaya` (
 --
 
 INSERT INTO `dishub_wajib_biaya` (`id_bulan`, `bulan`, `jumlah`, `biaya`, `id_opd`, `id_tahun`) VALUES
-('64c13ab2ab392', 'JANUARI ', 1420, '115978200.00', 'Dinas Perhubungan', 2023),
-('64c13ab2ac813', 'FEBRUARI', 1170, '98500200.00', 'Dinas Perhubungan', 2023),
-('64c13ab2ad6ce', 'MARET', 1559, '217395750.00', 'Dinas Perhubungan', 2023),
-('64c13ab2afcda', 'APRIL', 1200, '169393750.00', 'Dinas Perhubungan', 2023),
-('64c13ab2b0fe2', 'MEI', 1174, '162001250.00', 'Dinas Perhubungan', 2023),
-('64c13ab2b1d30', 'JUNI', 1620, '224695000.00', 'Dinas Perhubungan', 2023),
-('64c13ab2b2aaf', 'JULI', 1300, '170105000.00', 'Dinas Perhubungan', 2023),
-('64c13ab2b38d5', 'AGUSTUS', 1522, '202245000.00', 'Dinas Perhubungan', 2023),
-('64c13ab2b4684', 'SEPTEMBER', 1478, '187928750.00', 'Dinas Perhubungan', 2023),
-('64c13ab2b5393', 'OKTOBER', 1288, '171363750.00', 'Dinas Perhubungan', 2023),
-('64c13ab2b6550', 'NOVEMBER', 1204, '169685000.00', 'Dinas Perhubungan', 2023),
-('64c13ab2b7165', 'DESEMBER', 1177, '157357500.00', 'Dinas Perhubungan', 2023);
+('64c13ab2ab392', 'JANUARI ', 1420, 115978200.00, 'Dinas Perhubungan', 2023),
+('64c13ab2ac813', 'FEBRUARI', 1170, 98500200.00, 'Dinas Perhubungan', 2023),
+('64c13ab2ad6ce', 'MARET', 1559, 217395750.00, 'Dinas Perhubungan', 2023),
+('64c13ab2afcda', 'APRIL', 1200, 169393750.00, 'Dinas Perhubungan', 2023),
+('64c13ab2b0fe2', 'MEI', 1174, 162001250.00, 'Dinas Perhubungan', 2023),
+('64c13ab2b1d30', 'JUNI', 1620, 224695000.00, 'Dinas Perhubungan', 2023),
+('64c13ab2b2aaf', 'JULI', 1300, 170105000.00, 'Dinas Perhubungan', 2023),
+('64c13ab2b38d5', 'AGUSTUS', 1522, 202245000.00, 'Dinas Perhubungan', 2023),
+('64c13ab2b4684', 'SEPTEMBER', 1478, 187928750.00, 'Dinas Perhubungan', 2023),
+('64c13ab2b5393', 'OKTOBER', 1288, 171363750.00, 'Dinas Perhubungan', 2023),
+('64c13ab2b6550', 'NOVEMBER', 1204, 169685000.00, 'Dinas Perhubungan', 2023),
+('64c13ab2b7165', 'DESEMBER', 1177, 157357500.00, 'Dinas Perhubungan', 2023);
 
 -- --------------------------------------------------------
 
@@ -560,7 +549,15 @@ CREATE TABLE `documents` (
 --
 
 INSERT INTO `documents` (`id_dok`, `nama_dokumen`, `download_link`) VALUES
-('64c1ea7a52e25', 'STATISTIK SEKTORAL KOTA BANDAR LAMPUNG TAHUN 2022', '../path/uploads/documents/954-STATISTIK SEKTORAL KOTA BANDAR LAMPUNG TAHUN 2022.pdf');
+('64c1ea7a52e25', 'STATISTIK SEKTORAL KOTA BANDAR LAMPUNG TAHUN 2022', '../path/uploads/documents/954-STATISTIK SEKTORAL KOTA BANDAR LAMPUNG TAHUN 2022.pdf'),
+('64c337c3c3d0f', 'BUKU STATISTIK SEKTORAL KOTA BANDAR LAMPUNG 2020', '../path/uploads/documents/199-Buku Statistik Sektoral Kota Bandar Lampung 2020.pdf'),
+('64c3381557ee8', 'STATISTIK SEKTORAL KOTA BANDAR LAMPUNG TAHUN 2021', '../path/uploads/documents/780-statistik sektoral kota bandar lampung TAHUN 2021.pdf'),
+('64c338755f5e7', 'BKD 2023', '../path/uploads/documents/630-BKD 2023.xlsx'),
+('64c33890a2264', 'DINAS PERHUBUNGAN', '../path/uploads/documents/96-DINAS PERHUBUNGAN.xlsx'),
+('64c3393412b22', 'DINAS SOSIAL 2023', '../path/uploads/documents/321-DINAS SOSIAL 2023.xlsx'),
+('64c3394d82e28', 'DINAS PERINDUSTRIAN 2023', '../path/uploads/documents/514-DINAS PERINDUSTRIAN 2023.xlsx'),
+('64c33969976d6', 'DINAS PU 2023', '../path/uploads/documents/788-DINAS PU 2023.xlsx'),
+('64c33a017787e', 'STATISTIK SEKTORAL PEMERINTAH KOTA BANDAR LAMPUNG', '../path/uploads/documents/283-STATISTIK SEKTORAL PEMERINTAH KOTA BANDAR LAMPUNG.pdf');
 
 -- --------------------------------------------------------
 
@@ -1410,7 +1407,8 @@ ALTER TABLE `puskesmas`
 -- Indeks untuk tabel `tabel_opd`
 --
 ALTER TABLE `tabel_opd`
-  ADD PRIMARY KEY (`id_opd`);
+  ADD PRIMARY KEY (`id_opd`),
+  ADD KEY `tabel_opd_ibfk_1` (`id_tahun`);
 
 --
 -- Indeks untuk tabel `tabel_tahun`

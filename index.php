@@ -83,7 +83,7 @@
                 <div class="stats-item text-center w-100 h-100">
                   <span
                     data-purecounter-start="0"
-                    data-purecounter-end="2570"
+                    data-purecounter-end="591"
                     data-purecounter-duration="1"
                     class="purecounter"
                   ></span>
@@ -131,7 +131,7 @@
         </div>
       </section>
     <!-- ======= Pricing Section ======= -->
-    <section id="pricing" class="pricing pt-0">
+    <!-- <section id="pricing" class="pricing pt-0">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
           <span>DATA</span>
@@ -139,31 +139,33 @@
         </div>
 
         <div class="row gy-4">
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="pricing-item">
-              <h3>Perangkat Daerah</h3>
-              <a href="#" class="buy-btn">Coming Soon Data</a>
-            </div>
-          </div>
-          <!-- End Pricing Item -->
+  <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+    <div class="pricing-item">
+      <img src="assets/img/coming-soon.png" alt="" width="300" height="310">
+      <h3>Perangkat Daerah</h3>
+      <a href="#" class="buy-btn">Coming Soon...</a>
+    </div>
+  </div>
+  <!-- End Pricing Item -->
 
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="pricing-item">
-              <h3>Indikator</h3>
-              <a href="#" class="buy-btn">Coming Soon Data</a>
-            </div>
-          </div>
-          <!-- End Pricing Item -->
+  <!-- <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+    <div class="pricing-item">
+      <img src="assets/img/coming-soon.png" alt="" width="300" height="310">
+      <h3>Urusan Bidang</h3>
+      <a href="#" class="buy-btn">Coming Soon...</a>
+    </div>
+  </div>
+  
 
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-            <div class="pricing-item">
-              <div class="pricing-item featured">
-              <h3>Urusan Bidang</h3>
-              <a href="#" class="buy-btn">Coming Soon Data</a>
-            </div>
-            </div>
-          </div>
-          <!-- End Pricing Item -->
+  <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+    <div class="pricing-item">
+      <img src="assets/img/coming-soon.png" alt="" width="300" height="310">
+      <h3>Indikator</h3>
+      <a href="#" class="buy-btn">Coming Soon...</a>
+    </div>
+  </div>  -->
+  <!-- End Pricing Item -->
+
         </div>
       </div>
     </section>
