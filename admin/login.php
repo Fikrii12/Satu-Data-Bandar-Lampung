@@ -74,13 +74,13 @@ $conn->close();
                 <p class="login-text">Satu Data Kota Bandar lampung</p>
             </div>
             <div class="input-group">
-                <input type="text" placeholder="Username" class="login-box" name="username"><br>
+                <input type="text" placeholder="E-mail" class="login-box" name="username"><br>
             </div>
             <div class="input-group">
                 <input type="password" placeholder="Password" class="login-box" name="password"><br>
             </div>
             <div class="input-group">
-                <input type="submit" value="Masuk" id="btn-login">
+                <input type="submit" value="Masuk" id="btn-login" class="btn">
             </div>
         </form>
     </div>
